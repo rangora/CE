@@ -1,0 +1,16 @@
+## visual studio
+.vs
+CE.sln
+
+## unreal
+Binaries
+Intermediate
+Plugins
+Saved
+Build
+
+## asset
+Content
+Content/Collections
+Content/Developers
+Content/resources
