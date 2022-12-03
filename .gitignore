@@ -10,7 +10,10 @@ Saved
 Build
 
 ## asset
-Content
+Content/__ExternalActors__
+Content/__ExternalObjects__
+Content/Characters
 Content/Collections
 Content/Developers
-Content/resources
+Content/LevelPrototyping
+Content/ThirdPerson
