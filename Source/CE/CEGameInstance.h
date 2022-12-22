@@ -11,7 +11,11 @@ class CE_API UCEGameInstance : public UGameInstance
 {
 	GENERATED_BODY()
 public:
-    static UCEGameInstance *GetGameInstance(const UObject *InObject);
+    static UCEGameInstance* GetGameInstance(const UObject *InObject);
+    class UCEGameResource& GetGameResource();
 
     void Init() override;
+
+private:
+    TObjectPtr<UCEGameResource> GameResource = nullptr;
 };

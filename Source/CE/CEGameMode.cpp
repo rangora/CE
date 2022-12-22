@@ -1,7 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "CEGameMode.h"
-#include "CECharacter.h"
+#include "Character/CECharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
 ACEGameMode::ACEGameMode()

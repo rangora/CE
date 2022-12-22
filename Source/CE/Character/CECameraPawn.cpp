@@ -8,7 +8,10 @@
 #include "GameFramework/SpringArmComponent.h"
 
 #include "Blueprint/WidgetLayoutLibrary.h"
-#include "CEGameInstance.h"
+#include "CE/CEGameInstance.h"
+
+//Test
+#include "CE/CEGameResource.h"
 
 ACECameraPawn::ACECameraPawn()
 {
@@ -55,6 +58,14 @@ void ACECameraPawn::BeginPlay()
     }
 
     this->SetActorTickEnabled(true);
+
+    //Test
+    UCEGameResource& Instance = UCEGameInstance::GetGameInstance(this)->GetGameResource();
+    auto Row = Instance.GetCharacterModelRow(FName(TEXT("1")));
+    const FString N1 = Row->SkeletalMesh.GetAssetName();
+    const FString N2 = Row->AnimBlueprint.GetAssetName();
+    UE_LOG(LogClass, Log, TEXT("N1:%s"), *N1);
+    UE_LOG(LogClass, Log, TEXT("N2:%s"), *N2);
 }
 
 void ACECameraPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
