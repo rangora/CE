@@ -28,6 +28,7 @@ ACECameraPawn::ACECameraPawn()
 
     SpringArmComponent->TargetArmLength = 1200.f;
     SpringArmComponent->SetWorldRotation(FRotator(-50.f, 0.f, 0.f));
+    SpringArmComponent->bDoCollisionTest = false;
 }
 
 void ACECameraPawn::Tick(float Delta)
