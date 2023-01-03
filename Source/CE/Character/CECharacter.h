@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "CE/CEEnum.h"
 #include "CECharacter.generated.h"
 
 UCLASS(config=Game)
@@ -13,14 +14,18 @@ class ACECharacter : public ACharacter
 public:
 	ACECharacter();
 
+	void BeginDestroy() final;
 	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) final;
 
-	void Init();
+	void InitWhenSpawned(const FName& InModelId, const ECharaType InCharaType);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;
 
+private:
 	UPROPERTY(EditDefaultsOnly)
-    FName CharaterModeId = FName();
+    FName CharacterModelId = FName();
+
+	ECharaType CharaType = ECharaType::None;
 };
 

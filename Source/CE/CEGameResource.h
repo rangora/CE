@@ -22,6 +22,9 @@ struct FCharacterModelRow : public FTableRowBase
 
     UPROPERTY(EditAnywhere)
     TSoftObjectPtr<UAnimBlueprint> AnimBlueprint = nullptr;
+
+    UPROPERTY(EditAnywhere)
+    TSoftClassPtr<AActor> CharacterClass = nullptr;
 };
 
 UCLASS()

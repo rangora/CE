@@ -9,6 +9,9 @@
 #include "GameFramework/Controller.h"
 #include "GameFramework/SpringArmComponent.h"
 
+#include "CE/CEGameInstance.h"
+#include "CE/CEGameResource.h"
+
 ACECharacter::ACECharacter()
 {
 	GetCapsuleComponent()->InitCapsuleSize(42.f, 96.0f);
@@ -30,12 +33,21 @@ ACECharacter::ACECharacter()
 	GetCharacterMovement()->MaxWalkSpeed = 500.f;
 	GetCharacterMovement()->MinAnalogWalkSpeed = 20.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
+
+    AutoPossessAI = EAutoPossessAI::PlacedInWorldOrSpawned;
+}
+
+void ACECharacter::BeginDestroy()
+{
+    Super::BeginDestroy();
 }
 
 void ACECharacter::SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent)
 {
 }
 
-void ACECharacter::Init()
+void ACECharacter::InitWhenSpawned(const FName& InModelId, const ECharaType InCharaType)
 {
+    CharaType = InCharaType;
+    CharacterModelId = InModelId;
 }
