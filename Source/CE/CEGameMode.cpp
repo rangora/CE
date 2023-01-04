@@ -4,10 +4,8 @@
 #include "Character/CECharacter.h"
 #include "UObject/ConstructorHelpers.h"
 
-// Test
-#include "CE/CEGameInstance.h"
+#include "CECore.h"
 #include "CE/CEGameResource.h"
-//
 
 ACEGameMode::ACEGameMode() {}
 
@@ -15,7 +13,7 @@ void ACEGameMode::StartPlay()
 {
     Super::StartPlay();
 
-	// Test
+	// Test로 스폰 기능 확인.
     const FVector SpawnLocation(900.f, 900.f, 500.f);
     const FName Key(TEXT("1"));
 
@@ -47,10 +45,9 @@ AActor* ACEGameMode::SpawnActor(const ESpawnType InType, const FName& InId, cons
 
 AActor* ACEGameMode::SpawnCharacterActor(const FName& InId, const FTransform& InTransform)
 {
-    UCEGameInstance* Instance = UCEGameInstance::GetGameInstance(this);
-    UCEGameResource& GameResource = Instance->GetGameResource();
+    UCEGameResource* GameResource = CECore::GetGameResource();
 
-    auto Row = GameResource.GetCharacterModelRow(InId);
+    auto Row = GameResource->GetCharacterModelRow(InId);
     if (Row == nullptr)
     {
         ensure(false);
@@ -58,7 +55,7 @@ AActor* ACEGameMode::SpawnCharacterActor(const FName& InId, const FTransform& In
         return nullptr;
     }
 
-    UClass* CharaClass = Row->CharacterClass.Get();
+    UClass* CharaClass = Row->CharacterClass.LoadSynchronous();
     ECharaType CharaType = Row->CharaType;
     if (!IsValid(CharaClass))
     {

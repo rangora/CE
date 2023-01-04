@@ -22,6 +22,3 @@ public:
 private:
     AActor* SpawnCharacterActor(const FName& InId, const FTransform& InTransform);
 };
-
-
-

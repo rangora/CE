@@ -15,7 +15,8 @@ public class CE : ModuleRules
 			"Engine",
 			"InputCore",
 			"HeadMountedDisplay",
-			"UMG"
+			"UMG",
+			"Slate"
 		});
 	}
 }
