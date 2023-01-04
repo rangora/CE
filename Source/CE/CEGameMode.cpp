@@ -1,4 +1,4 @@
-// Copyright Epic Games, Inc. All Rights Reserved.
+// CE made by ran.
 
 #include "CEGameMode.h"
 #include "Character/CECharacter.h"
