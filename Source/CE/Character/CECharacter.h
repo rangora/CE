@@ -18,6 +18,7 @@ public:
 	void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) final;
 
 	void InitWhenSpawned(const FName& InModelId, const ECharaType InCharaType);
+    void MoveTo(const FVector& InDest);
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Input)
 	float TurnRateGamepad;

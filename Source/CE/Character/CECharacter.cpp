@@ -11,6 +11,7 @@
 
 #include "CE/CEGameInstance.h"
 #include "CE/CEGameResource.h"
+#include "CE/CEAIController.h"
 
 ACECharacter::ACECharacter()
 {
@@ -50,4 +51,31 @@ void ACECharacter::InitWhenSpawned(const FName& InModelId, const ECharaType InCh
 {
     CharaType = InCharaType;
     CharacterModelId = InModelId;
+
+	if (!IsControlled())
+    {
+        FActorSpawnParameters SpawnInfo;
+        SpawnInfo.Instigator = GetInstigator();
+        SpawnInfo.SpawnCollisionHandlingOverride = ESpawnActorCollisionHandlingMethod::AlwaysSpawn;
+        SpawnInfo.OverrideLevel = GetLevel();
+        SpawnInfo.ObjectFlags |= RF_Transient;
+        ACEAIController* NewController = GetWorld()->SpawnActor<ACEAIController>(
+            ACEAIController::StaticClass(), GetActorLocation(), GetActorRotation(), SpawnInfo);
+        if (IsValid(NewController))
+        {
+            NewController->Possess(this);
+        }
+
+    }
+}
+
+void ACECharacter::MoveTo(const FVector& InDest)
+{
+    auto AIController = Cast<ACEAIController>(GetController());
+    if (!IsValid(AIController))
+    {
+        return;
+    }
+
+    AIController->MoveToLocation(InDest);
 }
