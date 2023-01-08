@@ -4,6 +4,7 @@
 
 #include "CE/CEMainController.h"
 #include "CE/Character/CECharacter.h"
+#include "CE/CEDebugManager.h"
 
 ACEMainHUD::ACEMainHUD(const FObjectInitializer& ObjectInitializer)
     : Super(ObjectInitializer)
@@ -40,6 +41,8 @@ void ACEMainHUD::DrawHUD()
         for (const auto Chara : Actors)
         {
             Controller->SelectedCharacters.Add(Chara);
+            // 임시 Select 표시
+            CEDebug::SpawnTextRenderActor(*Chara, Chara->GetActorLocation(), TEXT("Selected"));
         }
     }
 
